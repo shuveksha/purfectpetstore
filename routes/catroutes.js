@@ -45,8 +45,12 @@ catrouter.route('/').get((req, res) => {
     catproduct
   });
 })
-catrouter.route('/singlecat').get((req, res) => {
-  res.send('this is single catproduct');
+catrouter.route('/:id').get((req, res) => {
+  const id = req.params.id;
+  res.render('productdetail',{
+    
+  catpr:catproduct[id]
+})
 })
 
 module.exports = catrouter;
