@@ -47,7 +47,7 @@ catrouter.route('/').get((req, res) => {
 })
 catrouter.route('/:id').get((req, res) => {
   const id = req.params.id;
-  res.render('productdetail',{
+  res.render('catproductdetail',{
     
   catpr:catproduct[id]
 })

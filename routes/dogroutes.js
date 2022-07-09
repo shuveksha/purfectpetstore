@@ -48,8 +48,11 @@ dogrouter.route('/').get((req,res)=>{
     });
 });
 
-dogrouter.route('/singledog').get((req,res)=>{
-    res.send('this is single dog');
+dogrouter.route('/:id').get((req,res)=>{
+    const id = req.params.id;
+    res.render('dogproductdetail',{
+      dogpr:dogproduct[id]
+    });
 });
 
 module.exports=dogrouter;

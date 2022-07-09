@@ -40,8 +40,12 @@ fishrouter.route('/').get((req,res)=>{
       fishproduct  
     });
 });
-fishrouter.route('/singlefish').get((req,res)=>{
-res.send('this is single fish products');
-})
+
+fishrouter.route('/:id').get((req,res)=>{
+  const id= req.params.id;
+   res.render('fishdetail',{
+    fishpr:fishproduct[id]
+   });
+});
 
 module.exports= fishrouter;
