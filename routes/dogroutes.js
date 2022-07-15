@@ -1,58 +1,39 @@
-const express= require('express');
-const dogrouter= express.Router();
-
-const dogproduct=[
-       {
-        name: 'dog chew stick',
-        price: 200
-      },
-    
-      {
-        name: 'dog serlacs',
-        price: 300
-      },
-    
-      {
-        name: 'dog milk bottle',
-        price: 250
-      },
-    
-      {
-        name: 'dog litter box',
-        price: 350
-      },
-      {
-        name: 'dog belt',
-        price: 200
-      },
-    
-      {
-        name: 'dog home',
-        price: 3000
-      },
-      {
-        name: 'elephant stuffed',
-        price: 550
-      },
-      {
-        name: 'ball toy',
-        price: 150
-      },
+const express = require('express');
+const dogrouter = express.Router();
+const mysql = require('mysql');
 
 
-]
 
-dogrouter.route('/').get((req,res)=>{
-    res.render('dogproducts',{
-        dogproduct
+dogrouter.route('/').get((req, res) => {
+
+  const con = mysql.createConnection(
+    {
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "purrfectstore"
     });
+  con.query("SELECT * from product where category='dog'", (err, result) => {
+
+    res.render('dogproducts', { result: result });
+  })
+
 });
 
-dogrouter.route('/:id').get((req,res)=>{
-    const id = req.params.id;
-    res.render('dogproductdetail',{
-      dogpr:dogproduct[id]
-    });
+dogrouter.route('/:id').get((req, res) => {
+
+  const id = req.params.id;
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "purrfectstore"
+  })
+  con.query("SELECT * from product where category='dog'",(err,result)=>{
+    res.render('dogproductdetail',{result:result[id]})
+  })
+
+
 });
 
-module.exports=dogrouter;
+module.exports = dogrouter;

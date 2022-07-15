@@ -1,56 +1,38 @@
 const express = require('express');
 const catrouter = express.Router();
+const mysql= require('mysql');
 
-const catproduct = [
-  {
-    name: 'cat chew stick',
-    price: 200
-  },
 
-  {
-    name: 'cat serlacs',
-    price: 300
-  },
-
-  {
-    name: 'cat milk bottle',
-    price: 250
-  },
-
-  {
-    name: 'kity litter box',
-    price: 350
-  },
-  {
-    name: 'cat belt',
-    price: 200
-  },
-
-  {
-    name: 'kitty home',
-    price: 3000
-  },
-  {
-    name: 'elephant stuffed',
-    price: 550
-  },
-  {
-    name: 'ball toy',
-    price: 150
-  },
-
-]
 catrouter.route('/').get((req, res) => {
-  res.render('catproducts', {
-    catproduct
+ var con=  mysql.createConnection(
+    {
+    host:"localhost",
+    user:"root",
+    password:"",
+    database:"purrfectstore"
   });
+con.query("SELECT * from product where category='cat'",(err,result)=>{
+  res.render('catproducts',{result:result});
 })
+  
+});
+
+//**********
+
+
 catrouter.route('/:id').get((req, res) => {
   const id = req.params.id;
-  res.render('catproductdetail',{
-    
-  catpr:catproduct[id]
-})
-})
+  var con=  mysql.createConnection(
+     {
+     host:"localhost",
+     user:"root",
+     password:"",
+     database:"purrfectstore"
+   });
+ 
+   con.query("SELECT * from product where category='cat'",(err,result)=>{
+    res.render('catproductdetail',{result:result[id]});
+   });
+  });
 
 module.exports = catrouter;

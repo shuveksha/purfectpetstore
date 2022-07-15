@@ -3,9 +3,22 @@ const chalk = require('chalk');
 const debug = require('debug')('bookstore');
 const morgan = require('morgan');
 const path = require('path');
+const bodyparser= require('body-parser');
+const mysql= require('mysql');
 
 const app = express();
 app.set('view engine', 'ejs'); //registering ejs (view engine)
+
+
+//establishing(creating) db connection
+mysql.createConnection(
+  {
+  host:"localhost",
+  user:"root",
+  password:"",
+  database:"purrfectstore"
+}
+)
 
 //****importing routes***
 
@@ -27,12 +40,14 @@ app.use('/signup',signuprouter);
 
 
 
+
 app.use(morgan('tiny')); // middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 
+app.use(bodyparser.urlencoded({extended:true}));   
 
 app.get('/', (req, res) => {
   res.render('homepage');
