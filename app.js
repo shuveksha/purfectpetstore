@@ -1,6 +1,6 @@
 const express = require('express');
 const chalk = require('chalk');
-const debug = require('debug')('bookstore');
+const debug = require('debug')('petshopstore');
 const morgan = require('morgan');
 const path = require('path');
 const bodyparser= require('body-parser');

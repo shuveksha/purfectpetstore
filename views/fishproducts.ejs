@@ -51,7 +51,7 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <% for(let i=0;i<fishproduct.length;i++) { %> 
+               <% result.forEach((item,i)=>{ %> 
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
@@ -60,9 +60,9 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                 
-                             <h5 class="fw-bolder"><%=fishproduct[i].name%></h5>
+                             <h5 class="fw-bolder"><%=item.pname%></h5>
 
-                             Rs.<%=fishproduct[i].price %> 
+                             Rs.<%=item.pprice %> 
 
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-               <% } %> 
+               <% }) %> 
             </div>
         </div>
     </section>

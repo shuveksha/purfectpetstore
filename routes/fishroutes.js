@@ -1,51 +1,40 @@
 const express= require('express');
 const fishrouter= express.Router();
+const mysql= require('mysql');
 
-const fishproduct=[
-    {
-        name: 'small acquarium',
-        price: 2000
-      },
-    
-      {
-        name: 'plants decoration',
-        price: 600
-      },
-    
-      {
-        name: 'colorful stones',
-        price: 500
-      },
-    
-      {
-        name: 'fish food 1kg',
-        price: 150     
-     },
 
-      {
-        name: 'water clener',
-        price: 500
-      },
-    
-      {
-        name: 'fish food 2kg',
-        price: 700
-      },
-   
-     
-]
 
 fishrouter.route('/').get((req,res)=>{
+  const con= mysql.createConnection(
+    {
+    host:"localhost",
+    user:"root",
+    password:"",
+    database:"purrfectstorehouse"
+  });
+  con.query("SELECT * from product where pcategory='fish'",(err,result)=>{
     res.render('fishproducts',{
-      fishproduct  
-    });
+      result:result });
+})
 });
 
 fishrouter.route('/:id').get((req,res)=>{
-  const id= req.params.id;
-   res.render('fishdetail',{
-    fishpr:fishproduct[id]
-   });
+
+  const id = req.params.id;
+  const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    // database: "purrfectstore"
+    database:"purrfectstorehouse"
+
+})
+con.query("SELECT * from product where pcategory='fish'",(err,result)=>{
+  res.render('fishdetail',{
+    result:result[id] })
+})
+
 });
+
 
 module.exports= fishrouter;

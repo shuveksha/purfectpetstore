@@ -1,11 +1,11 @@
 {
-  "name": "bookstore",
+  "name": "petshopstore",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set DEBUG=bookstore & nodemon app.js",
+    "start": "set DEBUG=petshopstore & nodemon app.js",
     "lint": "eslint app.js"
   },
   "author": "",

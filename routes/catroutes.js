@@ -9,9 +9,9 @@ catrouter.route('/').get((req, res) => {
     host:"localhost",
     user:"root",
     password:"",
-    database:"purrfectstore"
+    database:"purrfectstorehouse"
   });
-con.query("SELECT * from product where category='cat'",(err,result)=>{
+con.query("SELECT * from product where pcategory='cat'",(err,result)=>{
   res.render('catproducts',{result:result});
 })
   
@@ -27,10 +27,10 @@ catrouter.route('/:id').get((req, res) => {
      host:"localhost",
      user:"root",
      password:"",
-     database:"purrfectstore"
+    database:"purrfectstorehouse"
    });
  
-   con.query("SELECT * from product where category='cat'",(err,result)=>{
+   con.query("SELECT * from product where pcategory='cat'",(err,result)=>{
     res.render('catproductdetail',{result:result[id]});
    });
   });
