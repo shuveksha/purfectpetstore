@@ -13,7 +13,7 @@
     <link href="assets/css/login.css" rel="stylesheet">
 
 
-    <title>Hello, world!</title>
+    <title>purr-fect pet products</title>
    
   </head>
   <body>
@@ -21,29 +21,32 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-lg-5 p">
-                      <img src="assets/img/logindog.jpg" class="img-fluid" alt="">
+                      <img src="assets/img/p.png" class="img-fluid" alt="">
                 </div>
                       <div class="col-lg-7 px-5 pt-5">
-                        <h1 class="font-weight-bold">logo</h1>
-                        <h4> sign into your account</h4>
-                        <form>
+                        
+                        <h4> Sign into your account</h4>
+                        <form  action="/login" method="post">
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <input type="email" placeholder="Email-Address"class="form-control my-3 p-3">
+                                    <input type="email" name="email" placeholder="Email-Address"class="form-control my-3 p-3">
                                     </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col-lg-7">
-                                            <input type="password" placeholder="******"class="form-control">
+                                            <input type="password" name="password" placeholder="******"class="form-control">
                                         </div>
                                          </div>
                                          <div class="form-row">
                                             <div class="col-lg-7">
-                                                <button type="button" class="btn1 mt-3 mb-5"> Login</button>
+                                                <button type="submit" class="btn1 mt-3 mb-5"> Login</button>
                                         </div>
                                          </div>
+                                         <% if(typeof message != "undefined" && message) { %>
+                                          <p class="alert alert-danger mt-4"><%=message %> </p>
+                                          <% } %> 
                                          <a href="#"> Forgot password</a> 
-                                         <p>Don't have an account? <a href="#"> Register here</a></p>
+                                         <p>Don't have an account? <a href="/signup"> Register here</a></p>
                         </form>
                     </div>
                 </div>
