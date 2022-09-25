@@ -89,10 +89,6 @@ app.use('/signup',signuprouter);
 
 
 
-
-
-
-
 app.listen(3000, () => {
   debug(`listening on port ${chalk.blue.bold('3000')}`);
 });
