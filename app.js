@@ -35,9 +35,7 @@ app.use(morgan('tiny')); // middleware
 app.use(express.static(path.join(__dirname, './public')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cookieParser()); //cookies haru use garna
 
